@@ -1,11 +1,3 @@
-# ------------------------------------------------------------------
-# Entorno de desarrollo: Laravel (backend) + React (frontend)
-#                        + MariaDB (base de datos) + Mailpit (correo)
-#
-# Todas las variables ${...} se leen del archivo .env que está junto
-# a este compose.yml (cópialo desde .env.example).
-# ------------------------------------------------------------------
-
 services:
 
   # ---------------- Backend: Laravel sobre PHP + Apache ----------------
@@ -21,14 +13,14 @@ services:
       APP_ENV: ${APP_ENV}
       APP_DEBUG: ${APP_DEBUG}
       APP_URL: ${APP_URL}
-      # Conexión a la base de datos (servicio "db")
+      # Conexión a la base de datos
       DB_CONNECTION: mariadb
       DB_HOST: db
       DB_PORT: 3306
       DB_DATABASE: ${DB_DATABASE}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
-      # Envío de correos a través de Mailpit (servicio "mailpit")
+      # Envío de correos
       MAIL_MAILER: smtp
       MAIL_HOST: mailpit
       MAIL_PORT: 1025
@@ -87,8 +79,8 @@ services:
   mailpit:
     image: axllent/mailpit:${MAILPIT_VERSION}
     ports:
-      - "${MAILPIT_SMTP_PORT}:1025"   # SMTP que usa Laravel
-      - "${MAILPIT_UI_PORT}:8025"     # Bandeja web para ver los correos
+      - "${MAILPIT_SMTP_PORT}:1025"   # SMTP
+      - "${MAILPIT_UI_PORT}:8025"     # Interfaz web
     networks:
       - app_network
 
